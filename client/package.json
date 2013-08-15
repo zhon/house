@@ -1,16 +1,16 @@
 {
-  "author": "Josh David Miller",
-  "name": "ng-boilerplate",
+  "author": "Zhon Johansen",
+  "name": "house",
   "version": "0.3.0",
-  "homepage": "http://bit.ly/ng-boilerplate",
+  "homepage": "https://github.com/zhon/house",
   "licenses": {
     "type": "MIT",
-    "url": "https://raw.github.com/joshdmiller/ng-boilerplate/master/LICENSE"
+    "url": "https://raw.github.com/zhon/house/master/LICENSE"
   },
-  "bugs": "https://github.com/joshdmiller/ng-boilerplate/issues",
+  "bugs": "https://github.com/zhon/house/issues",
   "repository": {
     "type": "git",
-    "url": "git@github.com:joshdmiller/ng-boilerplate.git"
+    "url": "git@github.com:zhon/house.git"
   },
   "dependencies": {},
   "devDependencies": {
@@ -28,6 +28,9 @@
     "grunt-contrib-coffee": "~0.7.0",
     "grunt-coffeelint": "0.0.6",
     "grunt-conventional-changelog": "~0.1.1",
-    "grunt-bump": "0.0.6"
+    "grunt-bump": "0.0.6",
+    "karma-jasmine": "~0.1.0",
+    "karma-chrome-launcher": "~0.1.0",
+    "karma-coffee-preprocessor": "~0.1.0"
   }
 }
