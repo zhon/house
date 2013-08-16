@@ -1,0 +1,31 @@
+
+<div >
+    <table>
+      <tr>
+        <th>
+            <i class='icon-thumbs-up' /><i class='icon-thumbs-down' />
+        </th>
+        <th>Bid</th>
+        <th>Address</th>
+        <th>Date</th>
+        <th>County</th>
+        <th>Seller</th>
+        <th>Owner</th>
+        <th>Updated</th>
+        <th><i class='icon-trash' /></th>
+      </tr>
+
+      <tr ng-repeat='item in items'>
+        <td>{{item.rank}}</td>
+        <td>{{item.bid}}</td>
+        <td>{{item.address}}</td>
+        <td>{{item.date | date:'MM/dd' }}</td>
+        <td>{{item.county}}</td>
+        <td>{{item.seller}}</td>
+        <td>{{item.owner}}</td>
+        <td>{{item.updated | date:'MM/dd' }}</td>
+        <td><i class='icon-remove' /></td>
+      </tr>
+
+    </table>
+</div>
