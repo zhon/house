@@ -1,8 +1,9 @@
-angular.module( 'ngBoilerplate', [
+angular.module( 'app', [
   'templates-app',
   'templates-common',
-  'ngBoilerplate.home',
-  'ngBoilerplate.about',
+  'app.sales',
+  'app.home',
+  'app.about',
   'ui.state',
   'ui.route'
 ])
