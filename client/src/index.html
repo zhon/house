@@ -37,8 +37,6 @@
   <body>
     <div class="container">
       <div class="masthead">
-        <h3 class="muted">ng-boilerplate <small><a
-              href="http://github.com/joshdmiller/ng-boilerplate/blob/master/CHANGELOG.md">v<%= version %></a></small></h3>
         <div class="navbar">
           <div class="navbar-inner">
             <div class="container">
@@ -60,6 +58,11 @@
                     <i class="icon-home"></i>
                     Sales
                   </a>
+                <li ui-route-=="/sellers" ng-class="{active:$uiRoute}">
+                  <a href="#/sellers">
+                    <i class="icon-legal"></i>
+                    Sellers
+                  </a>
                 </li>
               </ul>
             </div>
@@ -79,14 +82,11 @@
             <li><a target="_blank" href="http://linkedin.com/in/joshdmiller"><i class="icon-linkedin-sign"></i></a></li>
             <li><a target="_blank" href="http://github.com/joshdmiller/ng-boilerplate"><i class="icon-github-sign"></i></a></li>
           </ul>
-          
 
           <p>
-            (c) 2013 Josh David Miller. 
-            <a href="http://github.com/joshdmiller/ng-boilerplate/fork_select">Fork this</a>
-            to kickstart your next project.
+            (c) 2013 Zhon Johansen
             <br />
-            ng-boilerplate is based on
+            based on
             <a href="http://www.angularjs.org">AngularJS</a>,
             <a href="http://getbootstrap.com">Bootstrap</a>, 
             <a href="http://angular-ui.github.com/bootstrap">UI Bootstrap</a>,

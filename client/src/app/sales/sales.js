@@ -18,19 +18,26 @@ angular.module( 'app.sales', [
   });
 })
 
-.controller( 'SalesCtrl', function SalesController( $scope ) {
-  $scope.items = [
-    {
-      rank: 1,
-      bid: '$42',
-      address: '430 N Main, Layton',
-      date: new Date(),
-      county: 'Davis',
-      seller: 'Lundberg',
-      owner: 'Jack & Jill',
-      updated: new Date()
+.controller( 'SalesCtrl', function SalesController( $scope, SaleRepository ) {
+  $scope.items = [];
+  getAllSales();
+
+  function getAllSales() {
+     SaleRepository.getAllSales().then(function(items) {
+      $scope.items = items;
+    });
+  }
+
+})
+
+.service( 'SaleRepository', function SaleRepository($http) {
+  return {
+    getAllSales: function () {
+      return $http.get('/api/sales').then(function (result) {
+        return result.data;
+      });
     }
-  ];
+  };
 
 })
 

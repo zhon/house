@@ -1,10 +1,12 @@
 require 'sinatra'
 require 'mongoid'
 require 'json'
+require 'chronic'
 require "sinatra/reloader" if development?
 
 Mongoid.load!("mongoid.yml")
 
+set :public_folder, '../client/build'
 
 class Seller
   include Mongoid::Document
@@ -30,18 +32,18 @@ class Sale
   field :scraped_at, type: Time
 end
 
-before 'api/*' do
-end
-
-get '/sales' do
-  content_type :json
+get '/api/sales' do
   Sale.all.to_json
-    .sort(['date', 'desc'],['address', 'desc'])
+    #.sort(['date', 'desc'],['address', 'desc'])
 end
 
 get '/seller/:id' do
   content_type :json
   Seller.where(seller_id: params[:id])
+end
+
+before '/api/*' do
+  content_type :json
 end
 
 post '/api/ul_sales' do
@@ -58,18 +60,42 @@ post '/api/ul_sales' do
       phone: sale['seller_phone']
     ) unless seller
 
-    Sale.create(
-      seller_id: seller.id,
-      case: sale['case'],
-      address: sale['address'],
-      bid: sale['bid'],
-      date: sale['date'],
-      county: sale['county'],
-      owner: sale['owner']
-    )
+    sale_date = Chronic.parse(sale['sale_date'])
+    sale = 
+      Sale.and( {:case => sale['case']}, {seller_id: seller.id}).first ||
+      Sale.and(
+               {address: sale['address']},
+               {owner: sale['owner']},
+               {seller_id: seller.id},
+               {county: sale['county']}
+              ).first ||
+      Sale.new(
+        seller_id: seller.id,
+        case: sale['case'],
+        address: sale['address'],
+        bid: sale['bid'],
+        date: sale_date,
+        county: sale['county'],
+        owner: sale['owner']
+      )
 
+    now = Time.now
+    sale.update_attributes(
+      date: sale_date,
+      updated_at: now,
+      scraped_at: now
+    )
+    sale.save
   end
   ''
+end
+
+get '/' do
+  send_file File.expand_path('index.html', settings.public_folder)
+end
+
+get '/*' do
+  redirect '/'
 end
 
 
