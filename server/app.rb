@@ -23,7 +23,7 @@ class Sale
   field :bid, type: String
   field :date, type: Time
   field :county, type: String
-  #field :seller_id, type: Integer
+  field :seller_id, type: Moped::BSON::ObjectId
   field :owner, type: String
   field :rank, type: Integer
   field :updated_at, type: Time
@@ -72,17 +72,6 @@ post '/api/ul_sales' do
   ''
 end
 
-
-get '/companies/:code/prices.json' do
-  content_type :json
-  company = Company.where(code: params[:code])[0]
-
-  Price.where('share_id' => company.share_id)
-  .order_by('date', :desc)
-  .to_a
-  .reverse
-  .to_json
-end
 
 __END__
 
