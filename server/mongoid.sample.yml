@@ -1,0 +1,9 @@
+
+development:
+  sessions:
+    default:
+      database: mongoid_dev
+      hosts:
+        - localhost:27017
+ 
+production:
