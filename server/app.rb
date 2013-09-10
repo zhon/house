@@ -6,7 +6,7 @@ require "sinatra/reloader" if development?
 
 Mongoid.load!("mongoid.yml")
 
-set :public_folder, '../client/build'
+set :public_folder, '../client/build' if development?
 
 class Seller
   include Mongoid::Document
