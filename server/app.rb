@@ -48,6 +48,46 @@ before '/api/*' do
   content_type :json
 end
 
+post '/api/t_sales' do
+  #content_type :json
+  JSON.parse(request.body.read).each do |sale|
+     #find seller from phone or name
+    seller = Seller.find(
+      {name: sale['seller']}
+    ).first
+
+    sale_date = Chronic.parse(sale['sale_date'])
+    sale = 
+      Sale.and( {:case => sale['case']}, {seller_id: seller.id}).first ||
+      Sale.and(
+               {address: sale['address']},
+               {owner: sale['owner']},
+               {seller_id: seller.id},
+               {county: sale['county']}
+              ).first ||
+      Sale.new(
+        seller_id: seller.id,
+        case: sale['case'],
+        address: sale['address'],
+        bid: sale['bid'],
+        date: sale_date,
+        status: sale['status'],
+        county: sale['county'],
+        owner: sale['owner']
+      )
+
+    now = Time.now
+    sale.update_attributes(
+      date: sale_date,
+      updated_at: now,
+      scraped_at: now
+    )
+    sale.save
+  end
+  ''
+end
+
+
 post '/api/ul_sales' do
   #content_type :json
   JSON.parse(request.body.read).each do |sale|
@@ -103,18 +143,8 @@ end
 
 __END__
 
-  create_table "addresses", :force => true do |t|
-    t.integer  "sale_id"
-    t.string   "house"
-    t.string   "street"
-    t.string   "city"
-    t.string   "state",      :default => "UT"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "sales", :force => true do |t|
-    t.integer  "seller_id",                 :null => false
+    t.integer  "seller_id", :null => false
     t.string   "bid"
     t.datetime "date"
     t.string   "county"
@@ -124,10 +154,11 @@ __END__
     t.datetime "updated_at"
     t.integer  "rank",       :default => 0
     t.datetime "scraped_at"
+    t.string   "url"
   end
 
   create_table "sellers", :force => true do |t|
-    t.string   "name",       :limit => 40, :null => false
+    t.string   "name",       :limit => 40
     t.string   "url"
     t.string   "phone"
     t.datetime "created_at"
