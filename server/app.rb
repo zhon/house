@@ -29,6 +29,7 @@ class Sale
   field :seller_id, type: Moped::BSON::ObjectId
   field :owner, type: String
   field :rank, type: Integer
+  field :url, type: String
   field :updated_at, type: Time
   field :scraped_at, type: Time
 end
@@ -75,11 +76,11 @@ post '/api/ul_sales' do
         case: sale['case'],
         address: sale['address'],
         bid: sale['bid'],
+        url: sale['url']
         date: sale_date,
         county: sale['county'],
         owner: sale['owner']
       )
-
     now = Time.now
     sale.update_attributes(
       date: sale_date,
