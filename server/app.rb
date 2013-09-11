@@ -8,16 +8,6 @@ Mongoid.load!("mongoid.yml")
 
 set :public_folder, '../client/build' if development?
 
-class Seller
-  include Mongoid::Document
-
-  field :name, type: String
-  field :phone, type: String
-  field :url, type: String
-  field :scraped_at, type: Time
-  field :updated_at, type: Time
-end
-
 class Sale
   include Mongoid::Document
 
@@ -36,6 +26,11 @@ end
 
 get '/api/sales' do
   Sale.all.to_json
+    #.sort(['date', 'desc'],['address', 'desc'])
+end
+
+get '/api/sellers' do
+  Seller.all.to_json
     #.sort(['date', 'desc'],['address', 'desc'])
 end
 
@@ -116,7 +111,7 @@ post '/api/ul_sales' do
         case: sale['case'],
         address: sale['address'],
         bid: sale['bid'],
-        url: sale['url']
+        url: sale['url'],
         date: sale_date,
         county: sale['county'],
         owner: sale['owner']
