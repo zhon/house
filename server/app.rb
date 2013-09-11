@@ -13,8 +13,7 @@ Mongoid.load!("mongoid.yml")
 set :public_folder, '../client/build' if development?
 
 get '/api/sales' do
-  Sale.all.to_json
-    #.sort(['date', 'desc'],['address', 'desc'])
+  Sale.all.order_by(:date.asc, :address.asc).to_json
 end
 
 get '/api/sellers' do
