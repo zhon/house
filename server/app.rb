@@ -5,26 +5,11 @@ require 'chronic'
 require "sinatra/reloader" if development?
 
 require_relative 'app/seller/seller'
+require_relative 'app/sale/sale'
 
 Mongoid.load!("mongoid.yml")
 
 set :public_folder, '../client/build' if development?
-
-class Sale
-  include Mongoid::Document
-
-  field :case, type: String
-  field :address, type: String
-  field :bid, type: String
-  field :date, type: Time
-  field :county, type: String
-  field :seller_id, type: Moped::BSON::ObjectId
-  field :owner, type: String
-  field :rank, type: Integer
-  field :url, type: String
-  field :updated_at, type: Time
-  field :scraped_at, type: Time
-end
 
 get '/api/sales' do
   Sale.all.to_json
