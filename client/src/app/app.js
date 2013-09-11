@@ -3,13 +3,12 @@ angular.module( 'app', [
   'templates-common',
   'app.sales',
   'app.home',
-  'app.about',
   'ui.state',
   'ui.route'
 ])
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
-  $urlRouterProvider.otherwise( '/home' );
+  $urlRouterProvider.otherwise( '/sales' );
 })
 
 .run( function run ( titleService ) {
