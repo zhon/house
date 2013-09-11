@@ -334,7 +334,10 @@ EOD
 
 SELLERS.each do |seller|
   s = Seller.find_or_initialize_by({name: seller[:name]})
-  s.update({url: seller[:url], phone: seller[:phone]})
-  s.save
+  s.update_attributes(
+    url: seller[:url],
+    phone: seller[:phone],
+    scrapable: seller[:scrapable]
+  )
 end
 
