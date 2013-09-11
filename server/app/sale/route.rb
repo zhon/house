@@ -3,6 +3,15 @@ get '/api/sales' do
   Sale.all.order_by(:date.asc, :address.asc).to_json
 end
 
+get '/api/sale/:id' do
+  Sale.where(_id: params[:id]).to_json
+end
+
+delete '/api/sale/:id' do
+  Sale.where(_id: params[:id]).destroy
+end
+
+
 post '/api/t_sales' do
   #content_type :json
   JSON.parse(request.body.read).each do |sale|

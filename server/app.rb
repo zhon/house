@@ -8,12 +8,16 @@ require "sinatra/reloader" if development?
 require_relative 'app/seller/seller'
 require_relative 'app/sale/sale'
 
-require_relative 'app/sale/route'
+
+before '/api/*' do
+  content_type :json
+end
+
+load 'app/sale/route.rb'
 
 Mongoid.load!("mongoid.yml")
 
 set :public_folder, '../client/build' if development?
-
 
 get '/api/sellers' do
   Seller.all.to_json
@@ -23,10 +27,6 @@ end
 get '/seller/:id' do
   content_type :json
   Seller.where(seller_id: params[:id])
-end
-
-before '/api/*' do
-  content_type :json
 end
 
 
