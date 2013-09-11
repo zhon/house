@@ -2,6 +2,7 @@ require 'sinatra'
 require 'mongoid'
 require 'json'
 require 'chronic'
+
 require "sinatra/reloader" if development?
 
 require_relative 'app/seller/seller'
@@ -33,13 +34,10 @@ end
 post '/api/t_sales' do
   #content_type :json
   JSON.parse(request.body.read).each do |sale|
-     #find seller from phone or name
-    seller = Seller.find(
-      {name: sale['seller']}
-    ).first
+    seller = Seller.where(name: sale['seller']).first
 
     sale_date = Chronic.parse(sale['sale_date'])
-    sale = 
+    sale =
       Sale.and( {:case => sale['case']}, {seller_id: seller.id}).first ||
       Sale.and(
                {address: sale['address']},
@@ -51,15 +49,14 @@ post '/api/t_sales' do
         seller_id: seller.id,
         case: sale['case'],
         address: sale['address'],
-        bid: sale['bid'],
-        date: sale_date,
-        status: sale['status'],
         county: sale['county'],
         owner: sale['owner']
       )
 
     now = Time.now
     sale.update_attributes(
+      bid: sale['bid'],
+      status: sale['status'],
       date: sale_date,
       updated_at: now,
       scraped_at: now
