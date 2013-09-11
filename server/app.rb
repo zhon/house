@@ -112,35 +112,10 @@ end
 
 get '/' do
   send_file File.expand_path('index.html', settings.public_folder)
-end
+end if development?
+
 
 get '/*' do
   redirect '/'
-end
+end if development?
 
-
-__END__
-
-  create_table "sales", :force => true do |t|
-    t.integer  "seller_id", :null => false
-    t.string   "bid"
-    t.datetime "date"
-    t.string   "county"
-    t.string   "owner"
-    t.string   "case"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "rank",       :default => 0
-    t.datetime "scraped_at"
-    t.string   "url"
-  end
-
-  create_table "sellers", :force => true do |t|
-    t.string   "name",       :limit => 40
-    t.string   "url"
-    t.string   "phone"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "scrapable"
-    t.datetime "scraped_at"
-  end
