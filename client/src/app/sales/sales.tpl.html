@@ -21,7 +21,11 @@
         <td>{{item.address}}</td>
         <td>{{item.date | date:'MM/dd' }}</td>
         <td>{{item.county}}</td>
-        <td>{{item.seller}}</td>
+        <td>{{
+          item.seller_id.substring(
+              item.seller_id.length-3,
+              item.seller_id.length) }}
+        </td>
         <td>{{item.owner}}</td>
         <td>{{item.scraped_at | date:'MM/dd:ha' }}</td>
         <td><i class='icon-remove' /></td>
