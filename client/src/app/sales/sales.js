@@ -18,7 +18,9 @@ angular.module( 'app.sales', [
   });
 })
 
-.controller( 'SalesCtrl', function SalesController( $scope, SaleRepository ) {
+.controller( 'SalesCtrl', function SalesController( $scope, SaleRepository, titleService ) {
+  titleService.setTitle( 'Sales' );
+
   $scope.items = [];
   getAllSales();
 

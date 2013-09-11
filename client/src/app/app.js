@@ -13,7 +13,7 @@ angular.module( 'app', [
 })
 
 .run( function run ( titleService ) {
-  titleService.setSuffix( ' | ngBoilerplate' );
+  titleService.setSuffix( ' | Foreclosure' );
 })
 
 .controller( 'AppCtrl', function AppCtrl ( $scope, $location ) {
