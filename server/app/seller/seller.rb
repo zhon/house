@@ -8,6 +8,5 @@ class Seller
   field :phone, type: String
   field :url, type: String
   field :scraped_at, type: Time
-  field :updated_at, type: Time
 end
 

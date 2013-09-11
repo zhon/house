@@ -4,6 +4,8 @@ require 'json'
 require 'chronic'
 require "sinatra/reloader" if development?
 
+require_relative 'app/seller/seller'
+
 Mongoid.load!("mongoid.yml")
 
 set :public_folder, '../client/build' if development?
