@@ -13,34 +13,34 @@ end
 
 
 post '/api/t_sales' do
-  #content_type :json
-  JSON.parse(request.body.read).each do |sale|
-    seller = Seller.where(name: sale['seller']).first
+  content_type :json
 
-    sale_date = Chronic.parse(sale['sale_date'])
+  JSON.parse(request.body.read).each do |item|
+    seller = Seller.where(name: item['seller']).first
+
+    sale_date = Chronic.parse(item['sale_date'])
     sale =
-      Sale.and( {:case => sale['case']}, {seller_id: seller.id}).first ||
+      Sale.and( {:case => item['case']}, {seller_id: seller.id}).first ||
       Sale.and(
-               {address: sale['address']},
-               {owner: sale['owner']},
+               {address: item['address']},
+               {owner: item['owner']},
                {seller_id: seller.id},
-               {county: sale['county']}
+               {county: item['county']}
               ).first ||
       Sale.new(
         seller_id: seller.id,
-        case: sale['case'],
-        address: sale['address'],
-        county: sale['county'],
-        owner: sale['owner']
+        case: item['case'],
+        address: item['address'],
+        county: item['county'],
+        owner: item['owner']
       )
 
     now = Time.now
     sale.update_attributes(
-      bid: sale['bid'],
-      status: sale['status'],
+      bid: item['bid'],
+      status: item['status'],
       date: sale_date,
-      updated_at: now,
-      scraped_at: now
+      updated_at: now
     )
     sale.save
   end
@@ -48,6 +48,7 @@ post '/api/t_sales' do
 end
 
 
+  # TODO fix bug with sale item & db sale 
 post '/api/ul_sales' do
   #content_type :json
   JSON.parse(request.body.read).each do |sale|
