@@ -86,7 +86,6 @@ post '/api/ul_sales' do
     sale.update_attributes(
       date: sale_date,
       updated_at: now,
-      scraped_at: now
     )
     sale.save
   end

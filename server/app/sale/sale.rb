@@ -14,6 +14,5 @@ class Sale
   field :rank, type: Integer
   field :url, type: String
   field :updated_at, type: Time
-  field :scraped_at, type: Time
 end
 
