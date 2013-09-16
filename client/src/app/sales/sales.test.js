@@ -4,37 +4,36 @@ describe( 'sales', function() {
   beforeEach( module( 'app.sales' ) );
 
   describe('routing', function() {
+    // good luck testing ui-routing
+    // let me know when you figure it out
+  });
 
+  describe('SalesCtrl', function() {
+    var mockScope,
+        mockSaleRepository,
+        mockTitleService,
+        mockQ,
+        deferred;
 
-    //beforeEach( inject(function($rootScope, _$controller_) {
-      //scope = $rootScope;
-      //controller = _$controller_;
-    //}));
+    beforeEach( inject(function($rootScope, _$controller_, $q, SaleRepository) {
+      mockScope = $rootScope.$new();
+      mockSaleRepository = sinon.stub({getAllSales: function(){}});
+      mockTitleService = sinon.stub();
+      controller = _$controller_;
+      //deferred = $q.defer();
+    }));
 
-    //it('route are setup', inject(function($state) {
-      //$state.transitionTo('sales');
+    describe('on create', function() {
+      it('calls SaleRepository.getAllSales', function() {
 
-        //expect($state.current).toBe(true);
-    //}));
+        mockSaleRepository.getAllSales.returns({then: function() {}});
 
-    //it('maps routes to controllers', function() {
+        controller('SalesCtrl', {$scope: mockScope, SaleRepository: mockSaleRepository, TitleService: mockTitleService});
 
-      //inject(function($route, $stateProvider) {
+        sinon.assert.calledOnce(mockSaleRepository.getAllSales);
+      });
 
-        //sinon.spy($stateProvider, )
-
-        //expect($route.routes['/sales'].controller).toBe('SaleCtrl');
-        //expect($route.routes['/sales'].templateUrl).
-          //toEqual('something.html');
-
-        //expect($route.routes['/phones/:phoneId'].controller).
-          //toEqual('PhoneDetailCtrl');
-
-        //expect($location.routes[null].redirectTo).toEqual('/phones/');
-      //});
-    //});
-
-
+    });
   });
 
 });
