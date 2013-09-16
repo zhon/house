@@ -13,6 +13,7 @@ module.exports = function ( karma ) {
       <% }); %>
       'src/**/*.js',
       'src/**/*.coffee',
+      'vendor/sinon/sinon.js',
     ],
 
     frameworks: [ 'jasmine' ],

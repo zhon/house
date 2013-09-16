@@ -25,7 +25,7 @@ angular.module( 'app.sales', [
   getAllSales();
 
   function getAllSales() {
-     SaleRepository.getAllSales().then(function(items) {
+    SaleRepository.getAllSales().then(function(items) {
       $scope.items = items;
     });
   }
