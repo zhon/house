@@ -10,25 +10,18 @@ describe( 'sales', function() {
 
   describe('SalesCtrl', function() {
     var mockScope,
-        mockSaleRepository,
-        mockTitleService,
-        mockQ,
-        deferred;
+        mockSaleRepository;
 
-    beforeEach( inject(function($rootScope, _$controller_, $q, SaleRepository) {
+    beforeEach( inject(function($rootScope, _$controller_) {
       mockScope = $rootScope.$new();
       mockSaleRepository = sinon.stub({getAllSales: function(){}});
-      mockTitleService = sinon.stub();
-      controller = _$controller_;
-      //deferred = $q.defer();
+      $controller = _$controller_;
     }));
 
     describe('on create', function() {
       it('calls SaleRepository.getAllSales', function() {
-
         mockSaleRepository.getAllSales.returns({then: function() {}});
-
-        controller('SalesCtrl', {$scope: mockScope, SaleRepository: mockSaleRepository, TitleService: mockTitleService});
+        $controller('SalesCtrl', {$scope: mockScope, SaleRepository: mockSaleRepository});
 
         sinon.assert.calledOnce(mockSaleRepository.getAllSales);
       });
