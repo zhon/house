@@ -5,6 +5,7 @@
         <th>
             <i class='icon-thumbs-up' /><i class='icon-thumbs-down' />
         </th>
+        <th>Status</th>
         <th>Bid</th>
         <th>Address</th>
         <th>Date</th>
@@ -17,6 +18,7 @@
 
       <tr ng-repeat='item in sales'>
         <td>{{item.rank}}</td>
+        <td>{{item.status}}</td>
         <td>{{item.bid}}</td>
         <td>{{item.address}}</td>
         <td>{{item.date | date:'MM/dd hh:mm' }}</td>
