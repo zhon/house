@@ -15,7 +15,7 @@
         <th><i class='icon-trash' /></th>
       </tr>
 
-      <tr ng-repeat='item in items'>
+      <tr ng-repeat='item in sales'>
         <td>{{item.rank}}</td>
         <td>{{item.bid}}</td>
         <td>{{item.address}}</td>
@@ -28,7 +28,11 @@
         </td>
         <td>{{item.owner}}</td>
         <td>{{item.updated_at | date:'MM/dd:ha' }}</td>
-        <td><i class='icon-remove' /></td>
+        <td>
+          <button class='btn-link' ng-click="deleteSale(item)">
+            <i class='icon-remove'></i>
+          </button>
+        </td>
       </tr>
 
     </table>

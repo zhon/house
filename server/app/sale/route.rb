@@ -9,6 +9,7 @@ end
 
 delete '/api/sale/:id' do
   Sale.where(_id: params[:id]).destroy
+  ''
 end
 
 

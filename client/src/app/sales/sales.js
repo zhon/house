@@ -1,3 +1,4 @@
+/* jshint -W024 */
 
 angular.module( 'app.sales', [
   'ui.state',
@@ -21,12 +22,24 @@ angular.module( 'app.sales', [
 .controller( 'SalesCtrl', function SalesController( $scope, SaleRepository, titleService ) {
   titleService.setTitle( 'Sales' );
 
-  $scope.items = [];
+  $scope.sales = [];
   getAllSales();
+
+  $scope.deleteSale = function (sale) {
+    SaleRepository.delete(sale._id).then(function() {
+      var sales = _.reject($scope.sales, function(s) {
+        return sale === s;
+      });
+      $scope.sales = sales;
+    },
+    function(result) {
+      alert("something went wrong " + result);
+    });
+  };
 
   function getAllSales() {
     SaleRepository.getAllSales().then(function(items) {
-      $scope.items = items;
+      $scope.sales = items;
     });
   }
 
@@ -34,11 +47,17 @@ angular.module( 'app.sales', [
 
 .service( 'SaleRepository', function SaleRepository($http) {
   return {
+
     getAllSales: function () {
       return $http.get('/api/sales').then(function (result) {
         return result.data;
       });
     }
+    ,
+    delete: function(saleId) {
+      return $http.delete('api/sale/' + saleId);
+    }
+
   };
 
 })
