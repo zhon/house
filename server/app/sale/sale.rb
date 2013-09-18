@@ -1,3 +1,4 @@
+require 'mongoid'
 
 class Sale
   include Mongoid::Document
