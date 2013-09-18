@@ -16,6 +16,7 @@ angular.module( 'app', [
 })
 
 .controller( 'AppCtrl', function AppCtrl ( $scope, $location ) {
+  /*jshint -W098 */
 })
 
 ;
