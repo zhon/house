@@ -14,5 +14,12 @@ class Sale
   field :rank, type: Integer
   field :url, type: String
   field :updated_at, type: Time
+
+  def serializable_hash(options={})
+    hash = super(options)
+    hash[:seller_name] = seller.name
+    hash
+  end
+
 end
 
