@@ -36,9 +36,6 @@ angular.module( 'app.sales', [
   };
 
   $scope.nextRank = function (sale) {
-    if (sale.rank === null) {
-      sale.rank = '0'
-    }
     switch (sale.rank) {
     case '1':
       sale.rank = '2';
@@ -49,10 +46,13 @@ angular.module( 'app.sales', [
     case '3':
       sale.rank = '1';
       break;
-    case '0':
+    default:
       sale.rank = '3';
-      break;
     }
+
+    //setTimeout(function () {
+      SaleRepository.update(sale._id, { 'rank': sale.rank});
+    //}, 3000);
 
   };
 
@@ -75,6 +75,10 @@ angular.module( 'app.sales', [
     ,
     delete: function(saleId) {
       return $http.delete('api/sale/' + saleId);
+    }
+    ,
+    update: function(id, data) {
+      return $http.put('api/sale/' + id, JSON.stringify(data));
     }
 
   };

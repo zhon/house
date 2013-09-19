@@ -7,11 +7,15 @@ get '/api/sale/:id' do
   Sale.where(_id: params[:id]).to_json
 end
 
+put '/api/sale/:id' do
+  Sale.where(_id: params[:id]).
+    find_and_modify('$set' => JSON.parse(request.body.read))
+end
+
 delete '/api/sale/:id' do
   Sale.where(_id: params[:id]).destroy
   ''
 end
-
 
 post '/api/t_sales' do
   content_type :json

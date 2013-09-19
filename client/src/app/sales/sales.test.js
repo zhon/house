@@ -45,7 +45,7 @@ describe( 'sales', function() {
 
     });
 
-    describe('$scope.deleteSale', function() {
+    describe('deleteSale', function() {
       var deferredUpdate
         , returnedSales = [{ _id: '42', foo: 'bar' }];
 
@@ -66,6 +66,42 @@ describe( 'sales', function() {
       });
 
     });
+
+    describe('nextRank', function() {
+      var deferredUpdate
+        , returnedSales = [{ _id: '42', foo: 'bar' }];
+
+      beforeEach(function () {
+        deferredUpdate = $q.defer();
+        deferredGetAllSales.resolve(returnedSales);
+        $controller('SalesCtrl', {$scope: scope, SaleRepository: mockSaleRepository});
+        scope.$root.$digest();
+        mockSaleRepository.update.returns(deferredUpdate.promise);
+      });
+
+      it('updates rank by calling SaleRepoistory.update', function() {
+        var sale = scope.sales[0];
+        scope.nextRank(sale);
+        sinon.assert.calledWith(mockSaleRepository.update, '42', {rank: '3' });
+      });
+
+      it('changes rank in order (null -> 3 -> 1 -> 2 -> 0 -> 3)', function() {
+        var sale = {_id: '42'};
+        expect(sale.rank).toEqual(null);
+        scope.nextRank(sale);
+        expect(sale.rank).toEqual('3');
+        scope.nextRank(sale);
+        expect(sale.rank).toEqual('1');
+        scope.nextRank(sale);
+        expect(sale.rank).toEqual('2');
+        scope.nextRank(sale);
+        expect(sale.rank).toEqual('0');
+        scope.nextRank(sale);
+        expect(sale.rank).toEqual('3');
+      });
+
+    });
+
   });
 
 });
