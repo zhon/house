@@ -27,9 +27,7 @@ angular.module( 'app.sales', [
 
   $scope.deleteSale = function (sale) {
     SaleRepository.delete(sale._id).then(function() {
-      var sales = _.reject($scope.sales, function(s) {
-        return sale === s;
-      });
+      var sales = _.without($scope.sales, sale);
       $scope.sales = sales;
     },
     function(result) {
