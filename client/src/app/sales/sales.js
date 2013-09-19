@@ -37,6 +37,27 @@ angular.module( 'app.sales', [
     });
   };
 
+  $scope.nextRank = function (sale) {
+    if (sale.rank === null) {
+      sale.rank = '0'
+    }
+    switch (sale.rank) {
+    case '1':
+      sale.rank = '2';
+    break;
+    case '2':
+      sale.rank = '0';
+      break;
+    case '3':
+      sale.rank = '1';
+      break;
+    case '0':
+      sale.rank = '3';
+      break;
+    }
+
+  };
+
   function getAllSales() {
     SaleRepository.getAllSales().then(function(items) {
       $scope.sales = items;
