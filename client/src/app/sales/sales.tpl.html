@@ -31,7 +31,11 @@
         </td>
         <td>{{item.status}}</td>
         <td>{{item.bid}}</td>
-        <td>{{item.address}}</td>
+        <td>
+          <a href="http://maps.google.com/maps?q={{item.address | encode }}" target="_blank">
+            {{item.address}}
+          </a>
+        </td>
         <td>{{item.date | date:'MM/dd hh:mm' }}</td>
         <td>{{item.county}}</td>
         <td>{{ item.seller_name }}

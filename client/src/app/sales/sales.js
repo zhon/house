@@ -85,5 +85,9 @@ angular.module( 'app.sales', [
 
 })
 
+.filter('encode', function() {
+  return encodeURIComponent;
+})
+
 
 ;
