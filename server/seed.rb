@@ -6,7 +6,7 @@ SELLERS = YAML::load <<EOD
 ---
 - :name: utahlegals.com
   :url: "http://utahlegals.com/"
-  :phone: 
+  :phone:
   :scrapable: true
 
 - :name: HallidayWatkins
@@ -31,7 +31,12 @@ SELLERS = YAML::load <<EOD
 
 - :name: UtahTrustee
   :url: "http://utahtrustee.com/pending-sales.php"
-  :phone: 
+  :phone:
+  :scrapable: true
+
+- :name: DefaultLink
+  :url: "http://www.dlppllc.com/index.php?Itemid=144"
+  :phone:
   :scrapable: true
 
 - :name: Matheson
@@ -333,7 +338,7 @@ EOD
 
 
 SELLERS.each do |seller|
-  s = Seller.find_or_initialize_by({name: seller[:name]})
+  s = Seller.find_or_initialize_by(name: seller[:name])
   s.update_attributes(
     url: seller[:url],
     phone: seller[:phone],
