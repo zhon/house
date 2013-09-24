@@ -1,4 +1,5 @@
-require_relative 'app'
+require_relative 'app/seller/seller'
+require_relative 'app/sale/sale'
 
 Mongoid.load!("mongoid.yml")
 
