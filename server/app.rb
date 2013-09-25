@@ -7,6 +7,7 @@ require "sinatra/reloader" if development?
 
 require_relative 'app/seller/seller'
 require_relative 'app/sale/sale'
+require_relative 'app/sale/sale_repository'
 
 
 before '/api/*' do

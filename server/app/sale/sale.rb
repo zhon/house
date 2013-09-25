@@ -1,4 +1,5 @@
 require 'mongoid'
+require 'chronic'
 
 class Sale
   include Mongoid::Document
@@ -20,6 +21,24 @@ class Sale
     hash = super(options)
     hash[:seller_name] = seller.name
     hash
+  end
+
+  def update_sale(item)
+    data = {
+      date: Chronic.parse(item[:sale_date]),
+      updated_at: Time.now
+    }
+    data[:bid] = item[:bid] if item[:bid]
+    data[:owner] = item[:owner] if item[:owner] #TODO consider keeping owner from paper
+    data[:county] = item[:county] if item[:county]
+    data[:case] = item[:case] if item[:case]
+    data[:url] = item[:url] if item[:url]
+    data[:status] = item[:status] if item[:status]
+
+    update_attributes(
+      data
+    )
+    save
   end
 
 end
