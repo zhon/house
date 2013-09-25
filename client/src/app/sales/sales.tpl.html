@@ -6,6 +6,7 @@
             <i class='icon-thumbs-up icon-large'></i>
             <i class='icon-thumbs-down icon-large'></i>
         </th>
+        <th>case</th>
         <th>Status</th>
         <th>Bid</th>
         <th>Address</th>
@@ -20,15 +21,16 @@
       <tr ng-repeat='item in sales'>
         <td>
           <button class='btn' ng-click="nextRank(item)">
-          <span ng-hide='true'>{{item.rank}}</span>
-          <span ng-switch on=item.rank >
-            <i ng-switch-when="1" class='icon-thumbs-up icon-2x'></i>
-            <i ng-switch-when="2" class='icon-thumbs-down icon-2x icon-rotate-270'></i>
-            <i ng-switch-when="3" class='icon-thumbs-down icon-2x'></i>
-            <i ng-switch-default class='icon-sign-blank icon-2x'></i>
-          </button>
+            <span ng-hide='true'>{{item.rank}}</span>
+            <span ng-switch on=item.rank >
+              <i ng-switch-when="1" class='icon-thumbs-up icon-2x'></i>
+              <i ng-switch-when="2" class='icon-thumbs-down icon-2x icon-rotate-270'></i>
+              <i ng-switch-when="3" class='icon-thumbs-down icon-2x'></i>
+              <i ng-switch-default class='icon-sign-blank icon-2x'></i>
+            </button>
           </span>
         </td>
+        <td>{{item.case}}</td>
         <td>{{item.status}}</td>
         <td>{{item.bid}}</td>
         <td>
