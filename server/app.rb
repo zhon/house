@@ -6,6 +6,7 @@ require 'chronic'
 require "sinatra/reloader" if development?
 
 require_relative 'app/seller/seller'
+require_relative 'app/seller/seller_repository'
 require_relative 'app/sale/sale'
 require_relative 'app/sale/sale_repository'
 

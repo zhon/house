@@ -20,15 +20,11 @@ end
 post '/api/t_sales' do
   content_type :json
 
-  items = []
   JSON.parse(request.body.read, :symbolize_names => true).each do |item|
-    seller = Seller.where(name: item[:seller]).first
-    items << 
+    seller = SellerRepository.find_or_create(nil, item[:seller])
     SaleRepository.update_from_trustee(item, seller)
   end
-
   ''
-  items.to_json
 end
 
 
