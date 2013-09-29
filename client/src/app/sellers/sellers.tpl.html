@@ -8,9 +8,12 @@
 
       <tr ng-repeat='item in sellers'>
         <td>
-          <a href="{{item.url}}" target="_blank">
+          <a ng-if='item.url' href="{{item.url}}" target="_blank">
             {{item.name}}
           </a>
+          <span ng-if='!item.url'>
+            {{item.name}}
+          </span>
         </td>
         <td>{{item.phone}}</td>
         <td>{{item.updated_at | date:'MM/dd hh:mm'}}</td>
