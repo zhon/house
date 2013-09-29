@@ -16,28 +16,19 @@ before '/api/*' do
 end
 
 load 'app/sale/route.rb'
+load 'app/seller/route.rb'
 
 Mongoid.load!("mongoid.yml")
 
-set :public_folder, '../client/build' if development?
+if development?
+  set :public_folder, '../client/build'
 
-get '/api/sellers' do
-  Seller.all.to_json
-    #.sort(['date', 'desc'],['address', 'desc'])
+  get '/' do
+    send_file File.expand_path('index.html', settings.public_folder)
+  end
+
+  #get '/*' do
+    #redirect '/'
+  #end
 end
-
-get '/seller/:id' do
-  content_type :json
-  Seller.where(seller_id: params[:id])
-end
-
-
-get '/' do
-  send_file File.expand_path('index.html', settings.public_folder)
-end if development?
-
-
-get '/*' do
-  redirect '/'
-end if development?
 

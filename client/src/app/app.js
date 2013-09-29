@@ -2,6 +2,7 @@ angular.module( 'app', [
   'templates-app',
   'templates-common',
   'app.sales',
+  'app.sellers',
   'app.home',
   'ui.state',
   'ui.route'
