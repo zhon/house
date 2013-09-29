@@ -17,12 +17,6 @@ class Sale
   field :url, type: String
   field :updated_at, type: Time
 
-  def serializable_hash(options={})
-    hash = super(options)
-    hash[:seller_name] = seller.name
-    hash
-  end
-
   def update_sale(item)
     data = {
       date: Chronic.parse(item[:sale_date]),

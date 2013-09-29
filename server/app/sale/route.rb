@@ -1,6 +1,6 @@
 
 get '/api/sales' do
-  Sale.all.order_by(:date.asc, :address.asc).to_json
+  Sale.all.order_by(:date.asc, :address.asc).to_json(include: :seller)
 end
 
 get '/api/sale/:id' do

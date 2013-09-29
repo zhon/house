@@ -15,10 +15,6 @@ describe Sale do
       @sale.seller = Seller.new(:name => 'Sam Norris')
     end
 
-    it 'has seller_name' do
-      JSON.parse(@sale.to_json)['seller_name'].must_equal 'Sam Norris'
-    end
-
     it 'has original data' do
       JSON.parse(@sale.to_json)['case'].must_equal 'case 666'
     end
