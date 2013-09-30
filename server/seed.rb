@@ -165,7 +165,7 @@ SELLERS = YAML::load <<EOD
   :phone: "801.792.2561"
   :scrapable: false
 
-- :name: ROBERT KARIYA
+- :name: Robert Kariya
   :url:
   :phone: "801.844.7220"
   :scrapable: false
@@ -190,12 +190,12 @@ SELLERS = YAML::load <<EOD
   :phone: "801.397.2660"
   :scrapable: false
 
-- :name: BRUCE L. RICHARDS
+- :name: Bruce L. Richards
   :url:
   :phone: "801.972.0307"
   :scrapable: false
 
-- :name: METRO NATIONAL TITLE
+- :name: Metro National Title
   :url:
   :phone: "801.363.6633"
   :scrapable: false
@@ -210,12 +210,12 @@ SELLERS = YAML::load <<EOD
   :phone: "801.531.8400"
   :scrapable: false
 
-- :name: SHAFFER LAW OFFICE
+- :name: Shaffer Law Office
   :url:
   :phone: "801.299.9453"
   :scrapable: false
 
-- :name: JUSTIN R. BAER
+- :name: Justin R. Baer
   :url:
   :phone: "801.990.0500"
   :scrapable: false
@@ -230,8 +230,8 @@ SELLERS = YAML::load <<EOD
   :phone: "801.838.9887"
   :scrapable: false
 
-- :name: Thomas J. Erbin
-  :url:
+- :name: Yeates & Geldzahler
+  :url: http://www.princeyeates.com/
   :phone: "801.524.1000"
   :scrapable: false
 
@@ -255,7 +255,7 @@ SELLERS = YAML::load <<EOD
   :phone: "801.521.3200"
   :scrapable: false
 
-- :name: TITAN TITLE INSURANCE
+- :name: Titan Title Insurance
   :url:
   :phone: "801.716.4000"
   :scrapable: false
@@ -275,7 +275,7 @@ SELLERS = YAML::load <<EOD
   :phone: "801.610.0010"
   :scrapable: false
 
-- :name: WALTER T. MERRILL
+- :name: Walter T. Merrill
   :url:
   :phone: "801.991.2120"
   :scrapable: false
@@ -320,7 +320,7 @@ SELLERS = YAML::load <<EOD
   :phone: "801.294.8100"
   :scrapable: false
 
-- :name: DAVID J. KNOWLTON
+- :name: David J. Knowlton
   :url:
   :phone: "801.621.4852"
   :scrapable: false
