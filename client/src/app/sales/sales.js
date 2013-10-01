@@ -78,7 +78,7 @@ angular.module( 'app.sales', [
     }
     ,
     update: function(id, data) {
-      return $http.put('api/sale/' + id, JSON.stringify(data));
+      return $http.put('api/sale/' + id, angular.toJson(data));
     }
 
   };
