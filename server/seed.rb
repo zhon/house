@@ -339,8 +339,10 @@ EOD
 
 
 SELLERS.each do |seller|
-  s = Seller.find_or_initialize_by(name: seller[:name])
+  s = Seller.where(phone: seller[:phone]).first if seller[:phone]
+  s = Seller.find_or_initialize_by(name: seller[:name]) unless s
   s.update_attributes(
+    name: seller[:name],
     url: seller[:url],
     phone: seller[:phone],
     scrapable: seller[:scrapable]
