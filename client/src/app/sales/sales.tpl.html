@@ -1,6 +1,7 @@
 
 <div class='table-responsive' >
-    <table class='table table-striped table-bordered table-condensed table-hover'>
+  <table class='table table-striped table-bordered table-condensed table-hover'>
+    <thead>
       <tr>
         <th>
             <i class='icon-thumbs-up icon-large'></i>
@@ -16,46 +17,47 @@
         <th>Updated</th>
         <th>case</th>
         <th><i class='icon-trash icon-large' /></th>
-      </tr>
+        </tr>
+      <tbody>
 
-      <tr ng-repeat='item in sales'>
-        <td>
-          <button class='btn' ng-click="nextRank(item)">
-            <span ng-hide='true'>{{item.rank}}</span>
-            <span ng-switch on=item.rank >
-              <i ng-switch-when="1" class='icon-thumbs-up icon-2x'></i>
-              <i ng-switch-when="2" class='icon-thumbs-down icon-2x icon-rotate-270'></i>
-              <i ng-switch-when="3" class='icon-thumbs-down icon-2x'></i>
-              <i ng-switch-default class='icon-sign-blank icon-2x'></i>
+        <tr ng-repeat='item in sales'>
+          <td>
+            <button class='btn' ng-click="nextRank(item)">
+              <span ng-hide='true'>{{item.rank}}</span>
+              <span ng-switch on=item.rank >
+                <i ng-switch-when="1" class='icon-thumbs-up icon-2x'></i>
+                <i ng-switch-when="2" class='icon-thumbs-down icon-2x icon-rotate-270'></i>
+                <i ng-switch-when="3" class='icon-thumbs-down icon-2x'></i>
+                <i ng-switch-default class='icon-sign-blank icon-2x'></i>
+              </button>
+            </span>
+          </td>
+          <td class='bid'>{{item.bid}}</td>
+          <td class='address'>
+            <a href="http://maps.google.com/maps?q={{item.address | encode }}" target="_blank">
+              {{item.address}}
+            </a>
+          </td>
+          <td>
+            <a ng-if="item.seller.url" href="{{ item.seller.url }}" target="_blank">
+              {{ item.seller.name }}
+            </a>
+            <span ng-if="!item.seller.url">
+              {{ item.seller.name }}
+            </span>
+          </td>
+          <td>{{item.date | date:'MM/dd hh:mm' }}</td>
+          <td>{{item.county}}</td>
+          <td>{{item.status}}</td>
+          <td>{{item.owner}}</td>
+          <td>{{item.updated_at | date:'MM/dd hh:mm' }}</td>
+          <td class='case'>{{item.case}}</td>
+          <td>
+            <button class='btn' ng-click="deleteSale(item)">
+              <i class='icon-remove icon-2x'></i>
             </button>
-          </span>
-        </td>
-        <td>{{item.bid}}</td>
-        <td>
-          <a href="http://maps.google.com/maps?q={{item.address | encode }}" target="_blank">
-            {{item.address}}
-          </a>
-        </td>
-        <td>
-          <a ng-if="item.seller.url" href="{{ item.seller.url }}" target="_blank">
-            {{ item.seller.name }}
-          </a>
-          <span ng-if="!item.seller.url">
-            {{ item.seller.name }}
-          </span>
-        </td>
-        <td>{{item.date | date:'MM/dd hh:mm' }}</td>
-        <td>{{item.county}}</td>
-        <td>{{item.status}}</td>
-        <td>{{item.owner}}</td>
-        <td>{{item.updated_at | date:'MM/dd hh:mm' }}</td>
-        <td class='case'>{{item.case}}</td>
-        <td>
-          <button class='btn' ng-click="deleteSale(item)">
-            <i class='icon-remove icon-2x'></i>
-          </button>
-        </td>
-      </tr>
+          </td>
+        </tr>
 
     </table>
 </div>
