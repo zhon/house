@@ -3,6 +3,7 @@
   <head>
     <title>house sales</title>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!-- social media tags -->
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@nohz">
@@ -35,32 +36,36 @@
     </script>
   </head>
   <body>
-    <div class="container">
-      <div class="masthead">
-        <div class="navbar">
-          <div class="navbar-inner">
-            <div class="container">
-              <ul class="nav">
-                <li ui-route="/sales" ng-class="{active:$uiRoute}">
-                  <a href="#/sales">
-                    <i class="icon-home"></i>
-                    Sales
-                  </a>
-                <li ui-route="/sellers" ng-class="{active:$uiRoute}">
-                  <a href="#/sellers">
-                    <i class="icon-legal"></i>
-                    Sellers
-                  </a>
-                </li>
-                <li ui-route="/home" ng-class="{active:$uiRoute}">
-                  <a href="#/home">
-                    <i class="icon-home"></i>
-                    Home
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
+    <div class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">House</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li ui-route="/sales" ng-class="{active:$uiRoute}">
+            <a href="#/sales">
+              <i class="icon-home"></i>
+              Sales
+            </a>
+            <li ui-route="/sellers" ng-class="{active:$uiRoute}">
+            <a href="#/sellers">
+              <i class="icon-legal"></i>
+              Sellers
+            </a>
+            </li>
+            <li ui-route="/home" ng-class="{active:$uiRoute}">
+            <a href="#/home">
+              <i class="icon-home"></i>
+              Home
+            </a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
