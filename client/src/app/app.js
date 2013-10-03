@@ -16,8 +16,8 @@ angular.module( 'app', [
   titleService.setSuffix( ' | Foreclosure' );
 })
 
+/*jshint -W098 */
 .controller( 'AppCtrl', function AppCtrl ( $scope, $location ) {
-  /*jshint -W098 */
 })
 
 ;

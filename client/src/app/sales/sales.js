@@ -71,15 +71,14 @@ angular.module( 'app.sales', [
       return $http.get('/api/sales').then(function (result) {
         return result.data;
       });
-    }
-    ,
+    },
+
     delete: function(saleId) {
       return $http.delete('api/sale/' + saleId);
-    }
-    ,
+    },
     update: function(id, data) {
       return $http.put('api/sale/' + id, angular.toJson(data));
-    }
+    },
 
   };
 

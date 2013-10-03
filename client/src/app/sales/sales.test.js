@@ -10,12 +10,11 @@ describe( 'sales', function() {
   });
 
   describe('SalesCtrl', function() {
-    var scope
-      , mockSaleRepository
-      , deferredGetAllSales
-      , $controller
-      , $q
-    ;
+    var scope,
+      mockSaleRepository,
+      deferredGetAllSales,
+      $controller,
+      $q;
 
     beforeEach( inject(function($rootScope, _$controller_, _$q_, SaleRepository) {
       scope = $rootScope.$new();
@@ -46,8 +45,8 @@ describe( 'sales', function() {
     });
 
     describe('deleteSale', function() {
-      var deferredUpdate
-        , returnedSales = [{ _id: '42', foo: 'bar' }];
+      var deferredUpdate,
+        returnedSales = [{ _id: '42', foo: 'bar' }];
 
       beforeEach(function () {
         deferredUpdate = $q.defer();
@@ -68,8 +67,8 @@ describe( 'sales', function() {
     });
 
     describe('nextRank', function() {
-      var deferredUpdate
-        , returnedSales = [{ _id: '42', foo: 'bar' }];
+      var deferredUpdate,
+          returnedSales = [{ _id: '42', foo: 'bar' }];
 
       beforeEach(function () {
         deferredUpdate = $q.defer();
