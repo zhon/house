@@ -20,9 +20,9 @@ module.exports = {
    * app's unit tests.
    */
   app_files: {
-    js: [ 'src/**/*.js', '!src/**/*.test.js' ],
+    js: [ 'src/**/*.js', '!src/**/*.test.js', '!src/assets/**/*.js' ],
     jsunit: [ 'src/**/*.test.js' ],
-
+    
     coffee: [ 'src/**/*.coffee', '!src/**/*.test.coffee' ],
     coffeeunit: [ 'src/**/*.test.coffee' ],
 
@@ -30,7 +30,25 @@ module.exports = {
     ctpl: [ 'src/common/**/*.tpl.html' ],
 
     html: [ 'src/index.html' ],
-    less: ['src/less/main.less', 'src/app/**/*.less']
+    less: 'src/less/main.less'
+  },
+
+  /**
+   * This is a collection of files used during testing only.
+   */
+  test_files: {
+    js: [
+      'vendor/angular-mocks/angular-mocks.js',
+      'vendor/sinon/lib/sinon.js',
+      'vendor/sinon/lib/sinon/spy.js',
+      'vendor/sinon/lib/sinon/call.js',
+      'vendor/sinon/lib/sinon/stub.js',
+      'vendor/sinon/lib/sinon/mock.js',
+      'vendor/sinon/lib/sinon/collection.js',
+      'vendor/sinon/lib/sinon/assert.js',
+      'vendor/sinon/lib/sinon/match.js',
+      'vendor/sinon/lib/sinon/sandbox.js',
+    ]
   },
 
   /**
@@ -46,6 +64,10 @@ module.exports = {
    *
    * The `vendor_files.css` property holds any CSS files to be automatically
    * included in our app.
+   *
+   * The `vendor_files.assets` property holds any assets to be copied along
+   * with our app's assets. This structure is flattened, so it is not
+   * recommended that you use wildcards.
    */
   vendor_files: {
     js: [
@@ -54,9 +76,11 @@ module.exports = {
       'vendor/placeholders/angular-placeholders-0.0.1-SNAPSHOT.min.js',
       'vendor/angular-ui-router/release/angular-ui-router.js',
       'vendor/angular-ui-utils/modules/route/route.js',
-      'vendor/underscore/underscore-min.js'
+      'vendor/underscore/underscore-min.js',
     ],
     css: [
+    ],
+    assets: [
     ]
   },
 };
