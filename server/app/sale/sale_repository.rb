@@ -1,9 +1,11 @@
 require_relative 'sale'
 require_relative '../seller/seller'
+require_relative '../common/address'
 
 class SaleRepository
 
   def self.update_from_trustee(item, seller)
+    item[:address] = Address.normalize(item[:address]) if item[:address]
     sale = find_or_create(item, seller)
     sale.update_sale(item)
   end

@@ -36,12 +36,13 @@ describe Sale do
       stub(Time).now { Time.new(2013,9,25) }
       mock(sale = Sale.new).update_attributes({
         date: Chronic.parse(sale_hash[:sale_date]),
-        updated_at: Time.now,
+        case: sale_hash[:case],
         bid: sale_hash[:bid],
+        address: sale_hash[:address],
         owner: sale_hash[:owner],
         county: sale_hash[:county],
-        case: sale_hash[:case],
         #url: sale_hash[:url],
+        updated_at: Time.now,
       })
       mock(sale).save
       sale.update_sale(sale_hash)

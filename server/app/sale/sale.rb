@@ -23,6 +23,7 @@ class Sale
       updated_at: Time.now
     }
     data[:bid] = item[:bid] if item[:bid]
+    data[:address] = item[:address] if item[:address]
     data[:owner] = item[:owner] if item[:owner] #TODO consider keeping owner from paper
     data[:county] = item[:county] if item[:county]
     data[:case] = item[:case] if item[:case]
