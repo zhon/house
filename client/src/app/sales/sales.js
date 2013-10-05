@@ -19,7 +19,7 @@ angular.module( 'app.sales', [
   });
 })
 
-.controller( 'SalesCtrl', function SalesController( $scope, SaleRepository, titleService ) {
+.controller( 'SalesCtrl', function SalesController( $scope, SaleRepository, titleService, $filter ) {
   titleService.setTitle( 'Sales' );
 
   $scope.sales = [];
@@ -56,9 +56,14 @@ angular.module( 'app.sales', [
 
   };
 
+  $scope.$watch("search", function(query) {
+    $scope.filteredSales = $filter("filter")($scope.sales, query);
+  });
+
   function getAllSales() {
     SaleRepository.getAllSales().then(function(items) {
       $scope.sales = items;
+      $scope.filteredSales = items;
     });
   }
 
