@@ -46,11 +46,11 @@
               {{ item.seller.name }}
             </span>
           </td>
-          <td>{{item.date | date:'MM/dd hh:mm' }}</td>
+          <td class='date'>{{item.date | date:'MM/dd hh:mm' }}</td>
           <td>{{item.county}}</td>
           <td>{{item.status}}</td>
           <td>{{item.owner}}</td>
-          <td>{{item.updated_at | date:'MM/dd hh:mm' }}</td>
+          <td class='date'>{{item.updated_at | date:'MM/dd hh:mm' }}</td>
           <td class='case'>{{item.case}}</td>
           <td>
             <button class='btn' ng-click="deleteSale(item)">
