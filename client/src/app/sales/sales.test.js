@@ -58,10 +58,12 @@ describe( 'sales', function() {
       it('deletes the sale', function() {
         mockSaleRepository.delete.returns(deferredUpdate.promise);
         expect(scope.sales).toBe(returnedSales);
+        expect(scope.filteredSales).toBe(returnedSales);
         scope.deleteSale(returnedSales[0]);
         deferredUpdate.resolve('');
         scope.$root.$digest();
         expect(scope.sales).toEqual([]);
+        expect(scope.filteredSales).toEqual([]);
       });
 
     });

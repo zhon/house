@@ -19,16 +19,21 @@ angular.module( 'app.sales', [
   });
 })
 
-.controller( 'SalesCtrl', function SalesController( $scope, SaleRepository, titleService, $filter ) {
+.controller( 'SalesCtrl',
+            function SalesController($scope,
+                                     SaleRepository,
+                                     titleService,
+                                     $filter) {
   titleService.setTitle( 'Sales' );
 
   $scope.sales = [];
+  $scope.filteredSales = [];
   getAllSales();
 
   $scope.deleteSale = function (sale) {
     SaleRepository.delete(sale._id).then(function() {
-      var sales = _.without($scope.sales, sale);
-      $scope.sales = sales;
+      $scope.sales = _.without($scope.sales, sale);
+      $scope.filteredSales = _.without($scope.filteredSales, sale);
     },
     function(result) {
       alert("something went wrong " + result);
