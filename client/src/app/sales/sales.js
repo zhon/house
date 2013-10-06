@@ -98,5 +98,16 @@ angular.module( 'app.sales', [
   return encodeURIComponent;
 })
 
+.filter('address', function($sce) {
+  return _.memoize(function(text) {
+    return $sce.trustAsHtml(
+      text
+        .replace('-', "&#8209;")
+        .replace(', ', "\n")
+        .replace(/ /g, "&nbsp;")
+    );
+  });
+})
+
 
 ;
