@@ -157,6 +157,11 @@ describe( 'sales', function() {
         expect(address(', ').toString()).toEqual('\n');
       });
 
+      it('deals gracefully with null and empty string', function() {
+        expect(address('').toString()).toEqual('');
+        expect(address(null).toString()).toEqual('');
+      });
+
     });
 
   });

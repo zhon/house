@@ -113,6 +113,9 @@ angular.module( 'app.sales', [
 
 .filter('address', function($sce) {
   return _.memoize(function(text) {
+    if (! text) {
+      return '';
+    }
     return $sce.trustAsHtml(
       text
         .replace(/-/g, "&#8209;")
