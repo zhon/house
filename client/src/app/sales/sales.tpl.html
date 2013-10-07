@@ -32,7 +32,7 @@
               </button>
             </span>
           </td>
-          <td class='bid'>{{item.bid}}</td>
+          <td class='bid'>{{item.bid | bid}}</td>
           <td class='address'>
             <a href="http://maps.google.com/maps?q={{item.address | encode }}" target="_blank">
               <span ng-bind-html="item.address | address"></span>

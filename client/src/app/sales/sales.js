@@ -94,6 +94,19 @@ angular.module( 'app.sales', [
 
 })
 
+.filter('bid', function() {
+  return function(text) {
+    var ret = text;
+    if (ret) {
+      ret = ret.replace(/\.\d\d/g, '');
+      if (!ret.match(/\$/)) {
+        ret = ret.replace(/\b(\d[\d,]+)\b/g, function(d) { return('$'+d); });
+      }
+    }
+    return ret;
+  };
+})
+
 .filter('encode', function() {
   return encodeURIComponent;
 })
@@ -102,7 +115,7 @@ angular.module( 'app.sales', [
   return _.memoize(function(text) {
     return $sce.trustAsHtml(
       text
-        .replace('-', "&#8209;")
+        .replace(/-/g, "&#8209;")
         .replace(', ', "\n")
         .replace(/ /g, "&nbsp;")
     );

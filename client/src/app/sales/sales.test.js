@@ -105,6 +105,63 @@ describe( 'sales', function() {
 
   });
 
+  describe('filter', function() {
+    var filter;
+
+    beforeEach(inject(function($filter) {
+      filter = $filter;
+    }));
+
+    describe('bid', function() {
+
+      it('adds $ to numbers', function() {
+        expect(filter('bid')('56')).toEqual('$56');
+        expect(filter('bid')('56 up to 95')).toEqual('$56 up to $95');
+      });
+
+      it('doesn\t add $ to single digit', function() {
+        expect(filter('bid')('0')).toEqual('0');
+      });
+
+      it('strips off change', function() {
+        expect(filter('bid')('$56.22')).toEqual('$56');
+      });
+
+      it('strips off change', function() {
+        expect(filter('bid')('$56.22')).toEqual('$56');
+      });
+
+      it('does nothing with null', function() {
+        expect(filter('bid')(null)).toEqual(null);
+      });
+
+    });
+
+    describe('address', function() {
+      var address;
+
+      beforeEach(function() {
+        address = filter('address');
+      });
+
+      it("replaces '-' with &#8209; (non break hyphen)", function() {
+        expect(address('-').toString()).toEqual('&#8209;');
+        expect(address('-2-').toString()).toEqual('&#8209;2&#8209;');
+      });
+
+      it("replaces space with nbsp", function() {
+        expect(address(' 9 ').toString()).toEqual('&nbsp;9&nbsp;');
+      });
+
+      it("replaces comma with newline", function() {
+        expect(address(', ').toString()).toEqual('\n');
+      });
+
+    });
+
+  });
+
+
 });
 
 
