@@ -135,6 +135,13 @@ describe( 'sales', function() {
         expect(filter('bid')(null)).toEqual(null);
       });
 
+      it('adds commas to bid', function() {
+        expect(filter('bid')('$3000')).toEqual('$3,000');
+        expect(filter('bid')('$30000')).toEqual('$30,000');
+        expect(filter('bid')('$300000')).toEqual('$300,000');
+        expect(filter('bid')('$3000000')).toEqual('$3,000,000');
+      });
+
     });
 
     describe('address', function() {

@@ -98,7 +98,9 @@ angular.module( 'app.sales', [
   return function(text) {
     var ret = text;
     if (ret) {
-      ret = ret.replace(/\.\d\d/g, '');
+      ret = ret
+        .replace(/\.\d\d/g, '') // remove change
+        .replace(/\B(?=(?:\d{3})+(?!\d))/g, ','); // add ,
       if (!ret.match(/\$/)) {
         ret = ret.replace(/\b(\d[\d,]+)\b/g, function(d) { return('$'+d); });
       }
