@@ -119,7 +119,7 @@ angular.module( 'app.sales', [
     return $sce.trustAsHtml(
       text
         .replace(/-/g, "&#8209;")
-        .replace(', ', "\n")
+        .replace(', ', "<br>")
         .replace(/ /g, "&nbsp;")
     );
   });

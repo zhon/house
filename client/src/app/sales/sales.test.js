@@ -161,7 +161,7 @@ describe( 'sales', function() {
       });
 
       it("replaces comma with newline", function() {
-        expect(address(', ').toString()).toEqual('\n');
+        expect(address(', ').toString()).toEqual('<br>');
       });
 
       it('deals gracefully with null and empty string', function() {
