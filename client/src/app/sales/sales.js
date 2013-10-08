@@ -100,10 +100,8 @@ angular.module( 'app.sales', [
     if (ret) {
       ret = ret
         .replace(/\.\d\d/g, '') // remove pennies
-        .replace(/\B(?=(?:\d{3})+(?!\d))/g, ','); // add ,
-      if (!ret.match(/\$/)) {
-        ret = ret.replace(/\b(?=\d\d+)/g, '$');
-      }
+        .replace(/\B(?=(?:\d{3})+(?!\d))/g, ',') // add ,
+        .replace(/(\$?)(\d[\d,]+)/g, "$$$2");
     }
     return ret;
   };
