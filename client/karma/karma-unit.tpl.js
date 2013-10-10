@@ -57,7 +57,10 @@ module.exports = function ( karma ) {
     browsers: [
       //'Firefox'
       'Chrome'
-    ]
+    ],
+
+    reportSlowerThan: 50,
+
   });
 };
 
