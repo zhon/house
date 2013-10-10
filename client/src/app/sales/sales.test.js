@@ -16,13 +16,14 @@ describe( 'sales', function() {
       $controller,
       $q;
 
-    beforeEach( inject(function($rootScope, _$controller_, _$q_, SaleRepository) {
+    beforeEach( inject(function($rootScope, _$controller_, _$q_, SaleRepository, _$timeout_) {
       scope = $rootScope.$new();
       $q = _$q_;
       deferredGetAllSales = $q.defer();
       mockSaleRepository = sinon.stub(SaleRepository);
       mockSaleRepository.getAllSales.returns(deferredGetAllSales.promise);
       $controller = _$controller_;
+      $timeout = _$timeout_;
     }));
 
     describe('create', function() {
@@ -83,7 +84,18 @@ describe( 'sales', function() {
       it('updates rank by calling SaleRepoistory.update', function() {
         var sale = scope.sales[0];
         scope.nextRank(sale);
+        $timeout.flush();
         sinon.assert.calledWith(mockSaleRepository.update, '42', {rank: '3' });
+      });
+
+      it('does\'t update rank when cycled back to original rank', function() {
+        var sale = scope.sales[0];
+        scope.nextRank(sale);
+        scope.nextRank(sale);
+        scope.nextRank(sale);
+        scope.nextRank(sale);
+        $timeout.flush();
+        sinon.assert.neverCalledWith(mockSaleRepository.update);
       });
 
       it('changes rank in order (null -> 3 -> 1 -> 2 -> 0 -> 3)', function() {

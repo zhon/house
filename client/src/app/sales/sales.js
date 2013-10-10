@@ -23,7 +23,8 @@ angular.module( 'app.sales', [
             function SalesController($scope,
                                      SaleRepository,
                                      titleService,
-                                     $filter) {
+                                     $filter,
+                                     $timeout) {
   titleService.setTitle( 'Sales' );
 
   $scope.sales = [];
@@ -40,7 +41,9 @@ angular.module( 'app.sales', [
     });
   };
 
+  var rankTimeout;
   $scope.nextRank = function (sale) {
+    var rank = sale.rank;
     switch (sale.rank) {
     case '1':
       sale.rank = '2';
@@ -55,9 +58,14 @@ angular.module( 'app.sales', [
       sale.rank = '3';
     }
 
-    //setTimeout(function () {
-      SaleRepository.update(sale._id, { 'rank': sale.rank});
-    //}, 3000);
+    if (!rankTimeout) {
+      rankTimeout = $timeout(function () {
+        if (rank !== sale.rank) {
+          SaleRepository.update(sale._id, { 'rank': sale.rank});
+        }
+        rankTimeout = undefined;
+      }, 3000);
+    }
 
   };
 
