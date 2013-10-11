@@ -24,7 +24,7 @@ describe Sale do
 
   describe 'update_sale' do
 
-    it '' do
+    it 'calls update_attributes then save' do
       sale_hash = {
         sale_date: 'Tomorrow',
         case: 'case_id',
@@ -47,5 +47,7 @@ describe Sale do
       mock(sale).save
       sale.update_sale(sale_hash)
     end
+
   end
+
 end

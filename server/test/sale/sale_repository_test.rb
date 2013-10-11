@@ -9,7 +9,7 @@ describe SaleRepository do
 
     before do
       @sale_hash={}
-      @nil_seller=nil
+      stub(@nil_seller = Seller.new).update_scraped_at
     end
 
     it 'finds or creates the sale and update it' do
@@ -17,6 +17,14 @@ describe SaleRepository do
         mock(Sale.new).update_sale(@sale_hash)
       }
       SaleRepository.update_from_trustee(@sale_hash, @nil_seller)
+    end
+
+    it 'updates seller scraped_at' do
+      stub(repo = SaleRepository).find_or_create do
+        stub('sale').update_sale
+      end
+      mock(seller = Seller.new).update_scraped_at
+      repo.update_from_trustee(@sale_hash, seller)
     end
 
     describe 'normalizes address' do

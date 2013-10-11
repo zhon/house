@@ -11,5 +11,10 @@ class Seller
   field :url, type: String
   field :scrapable, type: String
   field :scraped_at, type: Time
+
+  def update_scraped_at
+    update_attributes(scraped_at: Time.now)
+  end
+
 end
 

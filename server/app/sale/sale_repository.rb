@@ -8,6 +8,7 @@ class SaleRepository
     item[:address] = Address.normalize(item[:address]) if item[:address]
     sale = find_or_create(item, seller)
     sale.update_sale(item)
+    seller.update_scraped_at
   end
 
   def self.find_or_create(item, seller)
