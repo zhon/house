@@ -12,7 +12,7 @@ describe Seller do
       now = Time.new(2013,10,14)
       seller = Seller.new
       mock(Time).now { now }
-      mock.proxy(seller).scraped_at= now
+      mock(seller).scraped_at= now
       mock(seller).save
       seller.update_scraped_at
     end
