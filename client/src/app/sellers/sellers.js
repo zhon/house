@@ -18,15 +18,21 @@ angular.module( 'app.sellers', [
   });
 })
 
-.controller( 'SellersCtrl', function SellersController( $scope, SellerRepository, titleService ) {
+.controller( 'SellersCtrl', function SellersController( $scope, SellerRepository, titleService, $filter ) {
   titleService.setTitle( 'Sellers' );
 
   $scope.sellers = [];
+  $scope.filteredSellers = [];
   getAllSellers();
+
+  $scope.$watch("search", function(query) {
+    $scope.filteredSellers = $filter("filter")($scope.sellers, query);
+  });
 
   function getAllSellers() {
     SellerRepository.getAllSellers().then(function(items) {
       $scope.sellers = items;
+      $scope.filteredSellers = items;
     });
   }
 

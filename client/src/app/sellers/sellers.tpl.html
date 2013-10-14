@@ -6,7 +6,7 @@
         <th>Updated</th>
       </tr>
 
-      <tr ng-repeat='item in sellers'>
+      <tr ng-repeat='item in filteredSellers'>
         <td>
           <a ng-if='item.url' href="{{item.url}}" target="_blank">
             {{item.name}}
