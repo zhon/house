@@ -13,7 +13,8 @@ class Seller
   field :scraped_at, type: Time
 
   def update_scraped_at
-    update_attributes(scraped_at: Time.now)
+    self.scraped_at = Time.now
+    save
   end
 
 end

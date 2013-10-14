@@ -9,11 +9,11 @@ describe Seller do
   describe 'update_scraped_at' do
 
     it 'sets scraped_at to Time.now' do
-      now = 'Time.now' #2013, 10, 11
+      now = Time.new(2013,10,14)
+      seller = Seller.new
       mock(Time).now { now }
-      stub(seller=Seller.new).update_attributes(
-        scraped_at: now
-      )
+      mock.proxy(seller).scraped_at= now
+      mock(seller).save
       seller.update_scraped_at
     end
 
