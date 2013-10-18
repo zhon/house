@@ -47,7 +47,14 @@
             </span>
           </td>
           <td class='date'>{{item.date | date:'MM&#8209;dd hh:mm' }}</td>
-          <td>{{item.county}}</td>
+          <td>
+            <a ng-if="item.url" href="{{ item.url }}" target="_blank">
+              {{item.county}}
+            </a>
+            <span ng-if="!item.url">
+              {{item.county}}
+            </span>
+          </td>
           <td>{{item.status}}</td>
           <td>{{item.owner}}</td>
           <td class='date'>{{item.updated_at | date:'MM-dd hh:mm' }}</td>
