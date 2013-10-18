@@ -21,9 +21,11 @@ describe SellerRepository do
 
     it 'creates new seller' do
       name = 'seller name'
+      phone = '555.555.1234'
+      stub(Seller).where(phone: phone) { [] }
       stub(Seller).where(name: name) { [] }
-      mock(Seller).create(phone: nil, name: name)
-      SellerRepository.find_or_create(nil, name)
+      mock(Seller).create(phone: phone, name: name)
+      SellerRepository.find_or_create(phone, name)
     end
 
     it 'returns a seller' do

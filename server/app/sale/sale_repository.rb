@@ -9,6 +9,7 @@ class SaleRepository
     sale = find_or_create(item, seller)
     sale.update_sale(item)
     seller.update_scraped_at
+    sale
   end
 
   def self.find_or_create(item, seller)
@@ -19,7 +20,7 @@ class SaleRepository
 
   def self.find_by_case(item)
     #Sale.and( {:case => item['case']}, {seller_id: seller.id}).first
-    Sale.where(case: item[:case]).first
+    item[:case] ? Sale.where(case: item[:case]).first : nil
   end
 
   def self.find_by_address_owner_seller_county(item, seller)

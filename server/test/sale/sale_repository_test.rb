@@ -85,11 +85,17 @@ describe SaleRepository do
   end
 
   describe 'find_by_case' do
+
     it '' do
       sale_hash = { case: '2003XP' }
       mock(Sale).where(case: sale_hash[:case]) { mock([]).first }
       SaleRepository.find_by_case(sale_hash)
     end
+
+    it 'returns nil if sale[case:] is nil' do
+      SaleRepository.find_by_case( {} ).must_equal nil
+    end
+
   end
 
   describe 'find_by_address_owner_seller_county' do
