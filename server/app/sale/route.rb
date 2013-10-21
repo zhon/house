@@ -21,7 +21,7 @@ post '/api/sales' do
   content_type :json
 
   JSON.parse(request.body.read, :symbolize_names => true).each do |item|
-    seller = SellerRepository.find_or_create(nil, item[:seller])
+    seller = SellerRepository.find_or_create(item[:seller_phone], item[:seller])
     SaleRepository.update_from_trustee(item, seller)
   end
   ''

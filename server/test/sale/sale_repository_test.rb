@@ -99,6 +99,7 @@ describe SaleRepository do
   end
 
   describe 'find_by_address_owner_seller_county' do
+
     it '' do
       sale_hash = { 
         address: 'address',
@@ -114,6 +115,11 @@ describe SaleRepository do
       ) { mock([]).first }
       SaleRepository.find_by_address_owner_seller_county(sale_hash, seller)
     end
+
+    it 'returns nil if no address' do
+      SaleRepository.find_by_address_owner_seller_county({}, nil).must_equal nil
+    end
+
   end
 
   describe 'create_sale' do

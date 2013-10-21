@@ -24,6 +24,7 @@ class SaleRepository
   end
 
   def self.find_by_address_owner_seller_county(item, seller)
+    return nil unless item[:address]
     Sale.and(
       {address: item[:address]},
       {owner: item[:owner]},
