@@ -34,6 +34,10 @@ describe Address do
       Address.normalize('2525 S 300 W, Layton').must_equal '2525 S 300 W, Layton'
     end
 
+    it 'keeps lake in North Salt Lake' do
+      Address.normalize('309 N Bird Lane, North Salt Lake').must_equal '309 N Bird Lane, North Salt Lake'
+    end
+
     describe 'to_s' do
 
       it 'version bomb (try removing hack if new version)' do

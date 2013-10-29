@@ -5,11 +5,9 @@ require 'titleize'
 class Address
 
   def self.normalize(s)
-    address = StreetAddress::US.parse(s, informal: true)
+    s = s.sub(/ut(?:ah)?\s*(?:84\d{3}.*)?$/i, 'UT')
+    address = StreetAddress::US.parse(s)
     return s unless address
-    unless address.city
-      address = StreetAddress::US.parse(s + " UT", informal: true)
-    end
     address.state = nil
     address.city = address.city.titleize if address.city
     if address.street
