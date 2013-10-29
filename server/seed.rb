@@ -250,8 +250,8 @@ SELLERS = YAML::load <<EOD
   :phone: "801.328.3600"
   :scrapable: false
 
-- :name: George W. Pratt
-  :url:
+- :name: JonesWaldo
+  :url: http://www.joneswaldo.com/
   :phone: "801.521.3200"
   :scrapable: false
 
