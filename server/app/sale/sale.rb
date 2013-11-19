@@ -15,6 +15,7 @@ class Sale
   field :owner, type: String
   field :rank, type: Integer
   field :url, type: String
+  field :apn, type: String
   field :updated_at, type: Time
 
   def update_sale(item)
@@ -29,6 +30,7 @@ class Sale
     data[:case] = item[:case] if item[:case]
     data[:url] = item[:url] if item[:url]
     data[:status] = item[:status] if item[:status]
+    data[:apn] = item[:apn] if item[:apn]
 
     update_attributes(
       data
