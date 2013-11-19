@@ -335,6 +335,11 @@ SELLERS = YAML::load <<EOD
   :phone: "801.612.9299"
   :scrapable: false
 
+- :name: Sage Law
+  :url: http://www.sagelawpartners.com/
+  :phone: "801.438.7120"
+  :scrapable: false
+
 EOD
 
 
