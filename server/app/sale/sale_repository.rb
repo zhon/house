@@ -6,7 +6,7 @@ class SaleRepository
   class << self
 
     def update_from_trustee(item, seller)
-      item[:address] = Address.normalize(item[:address]) if item[:address]
+      item = normalize item
       sale = find_or_create(item, seller)
       sale.update_sale(item)
       seller.update_scraped_at
@@ -42,6 +42,20 @@ class SaleRepository
         county: item[:county],
         owner: item[:owner]
       )
+    end
+
+    def normalize item
+      item = item.dup
+      item[:address] = Address.normalize(item[:address]) if item[:address]
+      case item[:status].to_s
+      when :postponed.to_s
+        if item[:postponed_to]
+          item[:status] = ''
+          item.delete :postponed
+          item[:sale_date] = item.delete(:postponed_to)
+        end
+      end
+      item
     end
 
   end

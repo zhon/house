@@ -27,26 +27,43 @@ describe SaleRepository do
       repo.update_from_trustee(@sale_hash, seller)
     end
 
-    describe 'normalizes address' do
+    describe 'when status is postponed, update_sale is called with' do
 
-      before do
-        stub(SaleRepository).find_or_create(@sale_hash, @nil_seller) {
-          stub(Sale.new).update_sale(@sale_hash)
-        }
+      it 'only sale_date if status is :postponed' do
+        time = 'next month'
+        @sale_hash = { status: :postponed, postponed_to: time}
+        stub(SaleRepository).find_or_create do
+          mock('sale').update_sale( {status: '', sale_date: time} )
+        end
+        SaleRepository.update_from_trustee(@sale_hash, @nil_seller)
       end
 
-      it 'updates sale_hash' do
-        @sale_hash = {
-          address: '328 Chauncey Street, Brooklyn, NY'
-        }
-        mock(Address).normalize(@sale_hash[:address]) {
-          'a normalized address'
-        }
+      it 'original hash if missing :postponed_to' do
+        @sale_hash = { status: :postponed, sale_date: 'today' }.freeze
+        stub(SaleRepository).find_or_create do
+          mock('sale').update_sale(@sale_hash)
+        end
         SaleRepository.update_from_trustee(@sale_hash, @nil_seller)
-        @sale_hash[:address].must_equal 'a normalized address'
+      end
+
+    end
+
+    describe 'normalizes address' do
+
+      it 'updates sale' do
+        address = '328 Chauncey Street, Brooklyn, NY'
+        normalize_address = 'normalized address'
+        stub(Address).normalize(address) { normalize_address }
+        stub(SaleRepository).find_or_create do
+          mock!.update_sale({address: normalize_address})
+        end
+        SaleRepository.update_from_trustee({address: address}, @nil_seller)
       end
 
       it 'is NOT called when sale[:address] is nil' do
+        stub(SaleRepository).find_or_create do
+          stub!.update_sale
+        end
         mock(Address).normalize.never
         SaleRepository.update_from_trustee(@sale_hash, @nil_seller)
       end
