@@ -46,7 +46,7 @@
               {{ item.seller.name }}
             </span>
           </td>
-          <td class='date'>{{item.date | date:'MM&#8209;dd hh:mm' }}</td>
+          <td class='date'>{{item.date | date:'MM&#8209;dd HH:mm' }}</td>
           <td>
             <a ng-if="item.url" href="{{ item.url }}" target="_blank">
               {{item.county}}
@@ -57,7 +57,7 @@
           </td>
           <td>{{item.status}}</td>
           <td>{{item.owner}}</td>
-          <td class='date'>{{item.updated_at | date:'MM-dd hh:mm' }}</td>
+          <td class='date'>{{item.updated_at | date:'MM-dd HH:mm' }}</td>
           <td class='case'>{{item.case}}</td>
           <td>
             <button class='btn' ng-click="deleteSale(item)">
