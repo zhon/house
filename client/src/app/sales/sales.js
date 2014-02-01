@@ -2,7 +2,6 @@
 
 angular.module( 'app.sales', [
   'ui.state',
-  'placeholders',
   'ui.bootstrap',
   'titleService'
 ])
