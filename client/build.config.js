@@ -22,7 +22,7 @@ module.exports = {
   app_files: {
     js: [ 'src/**/*.js', '!src/**/*.test.js', '!src/assets/**/*.js' ],
     jsunit: [ 'src/**/*.test.js' ],
-    
+
     coffee: [ 'src/**/*.coffee', '!src/**/*.test.coffee' ],
     coffeeunit: [ 'src/**/*.test.coffee' ],
 

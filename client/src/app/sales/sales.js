@@ -1,7 +1,7 @@
 /* jshint -W024 */
 
 angular.module( 'app.sales', [
-  'ui.state',
+  'ui.router',
   'ui.bootstrap',
   'titleService'
 ])
