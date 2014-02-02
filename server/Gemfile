@@ -4,5 +4,4 @@ gem 'sinatra'
 gem 'mongoid'
 gem 'sinatra-contrib'
 gem 'titleize'
-gem 'thin'
 
