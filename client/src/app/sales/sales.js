@@ -3,7 +3,6 @@
 angular.module( 'app.sales', [
   'ui.router',
   'ui.bootstrap',
-  'titleService'
 ])
 
 .config(function config( $stateProvider ) {
@@ -14,18 +13,16 @@ angular.module( 'app.sales', [
         controller: 'SalesCtrl',
         templateUrl: 'sales/sales.tpl.html'
       }
-    }
+    },
+    data:{ pageTitle: 'Sales' }
   });
 })
 
 .controller( 'SalesCtrl',
             function SalesController($scope,
                                      SaleRepository,
-                                     titleService,
                                      $filter,
                                      $timeout) {
-  titleService.setTitle( 'Sales' );
-
   $scope.sales = [];
   $scope.filteredSales = [];
   getAllSales();

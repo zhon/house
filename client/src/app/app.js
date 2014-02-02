@@ -10,12 +10,16 @@ angular.module( 'app', [
   $urlRouterProvider.otherwise( '/sales' );
 })
 
-.run( function run ( titleService ) {
-  titleService.setSuffix( ' | Foreclosure' );
+.run( function run ( ) {
 })
 
 /*jshint -W098 */
 .controller( 'AppCtrl', function AppCtrl ( $scope, $location ) {
+  $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
+    if ( angular.isDefined( toState.data.pageTitle ) ) {
+      $scope.pageTitle = toState.data.pageTitle + ' | Forclosures' ;
+    }
+  });
 })
 
 ;

@@ -34,7 +34,6 @@ specified, as shown below.
 ```js
 angular.module( 'ngBoilerplate.home', [
   'placeholders',
-  'titleService'
 ])
 ```
 
@@ -55,7 +54,6 @@ And of course we define a controller for our route, though in this case it does
 nothing.
 
 ```js
-.controller( 'HomeCtrl', [ '$scope', 'titleService', function HomeController( $scope, titleService ) {
-  titleService.setTitle( 'Home' );
+.controller( 'HomeCtrl', [ '$scope', function HomeController( $scope ) {
 }]);
 ```

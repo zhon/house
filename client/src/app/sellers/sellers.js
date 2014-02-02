@@ -2,7 +2,6 @@
 angular.module( 'app.sellers', [
   'ui.router',
   'ui.bootstrap',
-  'titleService'
 ])
 
 .config(function config( $stateProvider ) {
@@ -13,12 +12,12 @@ angular.module( 'app.sellers', [
         controller: 'SellersCtrl',
         templateUrl: 'sellers/sellers.tpl.html'
       }
-    }
+    },
+    data:{ pageTitle: 'Sellers' }
   });
 })
 
-.controller( 'SellersCtrl', function SellersController( $scope, SellerRepository, titleService, $filter ) {
-  titleService.setTitle( 'Sellers' );
+.controller( 'SellersCtrl', function SellersController( $scope, SellerRepository, $filter ) {
 
   $scope.sellers = [];
   $scope.filteredSellers = [];
