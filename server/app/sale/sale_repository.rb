@@ -1,6 +1,7 @@
 require_relative 'sale'
 require_relative '../seller/seller'
-require_relative '../common/address'
+
+require 'street_address_ext'
 
 class SaleRepository
   class << self
@@ -46,7 +47,8 @@ class SaleRepository
 
     def normalize item
       item = item.dup
-      item[:address] = Address.normalize(item[:address]) if item[:address]
+      address = StreetAddressExt.parse(item[:address])
+      item[:address] = address.to_s if address
       case item[:status].to_s
       when :postponed.to_s
         if item[:postponed_to]

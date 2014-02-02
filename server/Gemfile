@@ -4,4 +4,13 @@ gem 'sinatra'
 gem 'mongoid'
 gem 'sinatra-contrib'
 gem 'titleize'
+gem 'chronic'
+gem 'street_address_ext', '~> 0.0.2'
+
+group :test, :development do
+  gem 'rr'
+  gem 'timecop'
+  gem 'guard'
+  gem 'guard-minitest'
+end
 

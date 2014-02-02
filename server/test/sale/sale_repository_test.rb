@@ -48,28 +48,6 @@ describe SaleRepository do
 
     end
 
-    describe 'normalizes address' do
-
-      it 'updates sale' do
-        address = '328 Chauncey Street, Brooklyn, NY'
-        normalize_address = 'normalized address'
-        stub(Address).normalize(address) { normalize_address }
-        stub(SaleRepository).find_or_create do
-          mock!.update_sale({address: normalize_address})
-        end
-        SaleRepository.update_from_trustee({address: address}, @nil_seller)
-      end
-
-      it 'is NOT called when sale[:address] is nil' do
-        stub(SaleRepository).find_or_create do
-          stub!.update_sale
-        end
-        mock(Address).normalize.never
-        SaleRepository.update_from_trustee(@sale_hash, @nil_seller)
-      end
-
-    end
-
   end
 
   describe 'find_or_create' do
