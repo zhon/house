@@ -4,6 +4,7 @@ angular.module( 'app', [
   'app.sales',
   'app.sellers',
   'app.home',
+  'ui.bootstrap',
 ])
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
