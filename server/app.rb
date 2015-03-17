@@ -23,6 +23,10 @@ Mongoid.load!("mongoid.yml")
 if development?
   set :public_folder, '../client/build'
 
+  get '/robots.txt' do
+    send_file File.expand_path('robots.txt', settings.public_folder)
+  end
+
   get '/' do
     send_file File.expand_path('index.html', settings.public_folder)
   end
