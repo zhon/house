@@ -16,7 +16,7 @@ SELLERS = YAML::load <<EOD
   :scrapable: true
 
 - :name: Lundberg
-  :url: "http://www.lundbergfirm.com/new/UpcomingSales.php"
+  :url: "http://www.lundbergfirm.com/forclosures"
   :phone: "801.263.3400"
   :scrapable: true
 
@@ -26,7 +26,7 @@ SELLERS = YAML::load <<EOD
   :scrapable: true
 
 - :name: SmithKnowles
-  :url: "http://smithknowles.com/foreclosure_sales.asp"
+  :url: "http://smithknowles.com/pending_foreclosure.php"
   :phone: "801.476.0303"
   :scrapable: true
 
@@ -41,7 +41,7 @@ SELLERS = YAML::load <<EOD
   :scrapable: true
 
 - :name: Matheson
-  :url: "http://www.mathesonhowell.com/foreclosures/"
+  :url: "http://halliday-watkins.com/index.php?id=23"
   :phone: "801.363.2244"
   :scrapable: true
 
