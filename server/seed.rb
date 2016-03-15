@@ -151,9 +151,9 @@ SELLERS = YAML::load <<EOD
   :scrapable: false
 
 - :name: Orange Title Insurance
-  :url:
+  :url: "https://stox.quickbase.com/db/bhty6arcz?a=q&query={65.IR.'today'}OR{65.IR.'next+4+d'}&slist=65"
   :phone: "801.285.0964"
-  :scrapable: false
+  :scrapable: true
 
 - :name: Katharine H. Kinsman
   :url:
