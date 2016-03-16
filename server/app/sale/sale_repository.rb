@@ -15,9 +15,21 @@ class SaleRepository
     end
 
     def find_or_create(item, seller)
-      find_by_case(item) ||
+      find_by_address_case(item) ||
+        find_by_case(item) ||
         find_by_address_owner_seller_county(item, seller) ||
         create_sale(item, seller)
+    end
+
+    def find_by_address_case(item)
+      return nil if item[:address].to_s.empty?
+      return nil if item[:case].to_s.empty?
+      sale = Sale.where(address: item[:address]).first
+      return nil unless sale
+      if item[:case].index(sale[:case]) || sale[:case].index(item[:case])
+        return sale
+      end
+      return nil
     end
 
     def find_by_case(item)

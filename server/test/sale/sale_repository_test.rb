@@ -93,10 +93,100 @@ describe SaleRepository do
 
   end
 
+  describe 'find_by_address_case' do
+
+    it 'returns nil when item[:address] is nil or empty' do
+      sale = {
+        address: nil,
+        case: "case_no",
+      }
+      SaleRepository.find_by_address_case(sale).must_equal nil
+    end
+
+    it 'returns nil when item[:case] is nil or empty' do
+      sale = {
+        address: "address",
+        case: "",
+      }
+      SaleRepository.find_by_address_case(sale).must_equal nil
+    end
+
+    it 'returns nil if no sale with address is found' do
+      sale = {
+        address: "address",
+        case: "",
+      }
+      sale_db = nil
+      stub(Sale).where { [] }
+      SaleRepository.find_by_address_case(sale).must_equal nil
+    end
+
+    it 'returns nil if case doesnt match' do
+      sale = {
+        address: "address",
+        case: "123",
+      }
+      sale_db = sale.dup
+      sale_db[:case] = "case"
+      stub(Sale).where { [sale_db] }
+      SaleRepository.find_by_address_case(sale).must_equal nil
+    end
+
+    it 'returns valid db sale when cases match' do
+      sale = {
+        address: "address",
+        case: "123456",
+      }
+      sale_db = sale.dup
+      sale_db[:case] = "123"
+      stub(Sale).where.with_any_args { [sale_db] }
+      SaleRepository.find_by_address_case(sale).must_equal sale_db
+    end
+
+    it 'returns valid when db_sale.case is superset of sale.case' do
+      sale = {
+        address: "address",
+        case: "123",
+      }
+      sale_db = sale.dup
+      sale_db[:case] = "A123B"
+      stub(Sale).where.with_any_args { [sale_db] }
+      SaleRepository.find_by_address_case(sale).must_equal sale_db
+    end
+
+    it 'returns nil when db_sale.case & sale.case dont match' do
+      sale = {
+        address: "address",
+        case: "123",
+      }
+      sale_db = sale.dup
+      sale_db[:case] = "ABCD"
+      stub(Sale).where.with_any_args { [sale_db] }
+      SaleRepository.find_by_address_case(sale).must_equal nil
+    end
+
+    it '' do
+      sale_hash = {
+        address: 'address',
+        owner: 'owner',
+        county: 'county',
+      }
+      stub(seller = Seller.new).id { 'seller_id' }
+      mock(Sale).and(
+        {address: sale_hash[:address]},
+        {owner: sale_hash[:owner]},
+        {seller_id: seller.id },
+        {county: sale_hash[:county]}
+      ) { mock([]).first }
+      SaleRepository.find_by_address_owner_seller_county(sale_hash, seller)
+    end
+
+  end
+
   describe 'find_by_address_owner_seller_county' do
 
     it '' do
-      sale_hash = { 
+      sale_hash = {
         address: 'address',
         owner: 'owner',
         county: 'county',
@@ -119,7 +209,7 @@ describe SaleRepository do
 
   describe 'create_sale' do
     it '' do
-      sale_hash = { 
+      sale_hash = {
         case: 'case_id',
         address: 'address',
         county: 'county',
