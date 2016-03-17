@@ -16,7 +16,7 @@ SELLERS = YAML::load <<EOD
   :scrapable: true
 
 - :name: Lundberg
-  :url: "http://www.lundbergfirm.com/forclosures"
+  :url: "http://lundbergfirm.com/foreclosures"
   :phone: "801.263.3400"
   :scrapable: true
 
