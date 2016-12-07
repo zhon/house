@@ -7,4 +7,6 @@
 
 ### Added
 
+### Updated
+- Update Orange Title's ``seed.rb`` URL
 
