@@ -151,7 +151,7 @@ SELLERS = YAML::load <<EOD
   :scrapable: false
 
 - :name: Orange Title Insurance
-  :url: "https://stox.quickbase.com/db/bhty6arcz?a=q&query={65.IR.'today'}OR{65.IR.'next+4+d'}&slist=65"
+  :url: "https://stox.quickbase.com/db/bk42uehek?a=q&qid=-1090844"
   :phone: "801.285.0964"
   :scrapable: true
 
