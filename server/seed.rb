@@ -340,6 +340,11 @@ SELLERS = YAML::load <<EOD
   :phone: "801.438.7120"
   :scrapable: false
 
+- :name: Robin K. Nalder
+  :url: http://www.robinknalder.com/
+  :phone: "801.392.3131"
+  :scrapable: false
+
 EOD
 
 
